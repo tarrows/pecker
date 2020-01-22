@@ -1,0 +1,7 @@
+[package]
+name = "pecker"
+version = "0.1.0"
+authors = ["c10t <c10t@fa.ke>"]
+edition = "2018"
+
+[dependencies]
