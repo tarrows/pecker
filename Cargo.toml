@@ -5,7 +5,7 @@ authors = ["c10t <c10t@fa.ke>"]
 edition = "2018"
 
 [dependencies]
-reqwest = "*"
+reqwest = { version = "*", features = ["json"] }
 serde = "*"
 serde_json = "*"
 serde_derive = "*"

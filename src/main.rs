@@ -6,8 +6,8 @@ async fn main() -> Result<(), reqwest::Error> {
   // let topstories = endpoint.clone().to_owned() + "/topstories.json";
   let res = reqwest::get("https://hacker-news.firebaseio.com/v0/topstories.json").await?;
   println!("status = {:?}", res.status());
-  let body = res.text().await?;
-  println!("body:\n\n{}", body);
+  let stories: Vec<u32> = res.json().await?;
+  println!("body:\n\n{:?}", stories);
 
   Ok(())
 }
