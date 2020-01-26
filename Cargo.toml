@@ -5,6 +5,7 @@ authors = ["c10t <c10t@fa.ke>"]
 edition = "2018"
 
 [dependencies]
+# to avoid "no method named `json` found for type `reqwest::Response` in the current scope"
 reqwest = { version = "*", features = ["json"] }
 serde = "*"
 serde_json = "*"
