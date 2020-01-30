@@ -1,7 +1,6 @@
 extern crate reqwest;
 // if no use StreamExt, said "note: the method `map` exists but the following trait bounds were not satisfied"
 use futures::{stream, StreamExt};
-use serde_json::json;
 const PARALLEL_REQUESTS: usize = 2;
 
 #[tokio::main]
@@ -28,10 +27,11 @@ async fn main() -> Result<(), reqwest::Error> {
     .for_each(|b| {
       async {
         match b {
-          Ok(b) => println!(
-            "{:#?}",
-            b.get("title").unwrap_or(&json!({ "title": "<NONE>" }))
-          ),
+          Ok(b) => {
+            let id = b.get("id").and_then(|x| x.as_i64()).unwrap_or(-1);
+            let title = b.get("title").and_then(|x| x.as_str()).unwrap_or("");
+            println!("{}: {}", id, title);
+          }
           Err(e) => println!("Error: {}", e),
         }
       }
