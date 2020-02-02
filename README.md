@@ -1,4 +1,5 @@
 # pecker
+take top stories
 
 ## References
 - [Hacker News API](https://github.com/HackerNews/API)

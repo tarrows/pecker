@@ -14,8 +14,8 @@ async fn main() -> Result<(), reqwest::Error> {
   let bodies = stream::iter(stories)
     .take(3)
     .map(|id| {
-      let item = format!("{}/item/{:?}.json", endpoint, id);
       async move {
+        let item = format!("{}/item/{:?}.json", endpoint, id);
         let res = reqwest::get(&item).await?;
         let json = res.json::<serde_json::Value>().await;
         json
