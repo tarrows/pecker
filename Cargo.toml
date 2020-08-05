@@ -12,3 +12,4 @@ serde_json = "*"
 serde_derive = "*"
 tokio = { version = "0.2", features = ["macros"] }
 futures = "*"
+structopt = "*"
