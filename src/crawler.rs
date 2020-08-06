@@ -6,7 +6,14 @@ const PARALLEL_REQUESTS: usize = 2;
 #[derive(Deserialize, Debug)]
 pub struct Story {
   id: i64,
+  type: String,
   by: String,
+  descendants: i64,
+  kids: Option<Vec<i64>>,
+  score: i64,
+  time: i64,
+  title: String,
+  url: Option<String>,
 }
 
 pub fn crawl(n: i32) -> Result<(), reqwest::Error> {
