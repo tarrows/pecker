@@ -1,8 +1,8 @@
 extern crate reqwest;
-use pecker::crawler::crawl;
+use pecker::crawler::fetch;
 
 #[tokio::main]
 async fn main() {
-  let res = crawl(3).await;
+  let res = fetch(3).await;
   println!("{:?}", res);
 }

@@ -16,7 +16,7 @@ pub struct Story {
   url: Option<String>,
 }
 
-pub async fn crawl(n: usize) -> Result<(), reqwest::Error> {
+pub async fn fetch(n: usize) -> Result<(), reqwest::Error> {
   let endpoint = "https://hacker-news.firebaseio.com/v0";
   let topstories = endpoint.clone().to_owned() + "/topstories.json";
   let res = reqwest::get(&topstories).await?;
