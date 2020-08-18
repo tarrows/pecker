@@ -35,18 +35,18 @@ pub async fn fetch(n: usize) -> Result<(), reqwest::Error> {
     })
     .buffer_unordered(PARALLEL_REQUESTS);
 
-  bodies
-    .for_each(|b| {
-      async {
-        match b {
-          Ok(b) => println!("{} {}", b.id, b.title),
-          Err(e) => println!("Error: {}", e),
-        }
-      }
-    })
-    .await;
+  // bodies
+  //   .for_each(|b| {
+  //     async {
+  //       match b {
+  //         Ok(b) => println!("{} {}", b.id, b.title),
+  //         Err(e) => println!("Error: {}", e),
+  //       }
+  //     }
+  //   })
+  //   .await;
 
-  Ok(())
+  // Ok(())
 }
 
 // fn form(j: serde_json::Value) -> String {
