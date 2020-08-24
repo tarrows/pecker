@@ -34,3 +34,11 @@ pub async fn fetch(n: usize) -> Result<Vec<Story>, reqwest::Error> {
 
   bodies.into_iter().collect()
 }
+
+pub async fn save(n: usize) {
+  let stories = fetch(n).await;
+  match stories {
+    Ok(stories) => println!("{:?}", stories),
+    Err(_) => {}
+  }
+}
