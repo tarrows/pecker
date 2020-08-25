@@ -1,8 +1,10 @@
 extern crate reqwest;
 use futures::future;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
+use serde_json::to_writer;
+use std::fs::File;
 
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Story {
   pub id: i64,
   r#type: String,
@@ -38,7 +40,15 @@ pub async fn fetch(n: usize) -> Result<Vec<Story>, reqwest::Error> {
 pub async fn save(n: usize) {
   let stories = fetch(n).await;
   match stories {
-    Ok(stories) => println!("{:?}", stories),
+    Ok(stories) => {
+      stories.into_iter().for_each(|story| {
+        let file = File::create(format!("{}.json", story.id));
+        match file {
+          Ok(file) => to_writer(&file, &story),
+          _ => (),
+        };
+      });
+    }
     Err(_) => {}
   }
 }
